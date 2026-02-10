@@ -1,0 +1,13 @@
+{
+    "Login": {
+        "title": "Student Testing Hub",
+        "subtitle": "Assess. Progress. Succeed.",
+        "studentId": "Student ID",
+        "accessCode": "Access Code",
+        "submit": "Sign In",
+        "description": "Enter your invitation details to access testing"
+    },
+    "LanguageSwitcher": {
+        "label": "Language"
+    }
+}
