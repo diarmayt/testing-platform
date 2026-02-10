@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { LoginForm } from "@/components/login-form";
 import { CosmicBackground } from "@/components/cosmic-background";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function LoginPage() {
     const t = useTranslations("Login");
@@ -55,44 +56,47 @@ export default function LoginPage() {
             <div className="relative z-10 flex w-full max-w-5xl flex-col items-center gap-12 lg:flex-row lg:items-start lg:gap-16">
                 {/* ── Left: Hero text ──────────────────────────── */}
                 <div className="flex flex-1 flex-col gap-6 pt-8 text-center lg:text-left">
-                    {/* Header with logo and language switcher */}
+                    {/* Header with logo, language switcher, and theme toggle */}
                     <div className="flex items-center justify-between animate-fade-in">
                         <div className="flex items-center gap-2">
                             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-orange-500 to-amber-500 text-lg shadow-lg shadow-orange-500/20">
                                 📖
                             </div>
-                            <span className="text-sm font-semibold tracking-wide text-white/80">
+                            <span className="text-slate-700 dark:text-white/80 text-sm font-semibold tracking-wide">
                                 testing
                             </span>
                         </div>
-                        <LanguageSwitcher />
+                        <div className="flex items-center gap-2">
+                            <ThemeToggle />
+                            <LanguageSwitcher />
+                        </div>
                     </div>
 
                     <div className="mt-8 animate-slide-up">
-                        <h1 className="text-4xl font-bold leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
+                        <h1 className="text-slate-900 dark:text-white text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
                             {t("title")}
                         </h1>
-                        <p className="mt-3 bg-gradient-to-r from-orange-400 via-amber-300 to-orange-500 bg-clip-text text-lg font-medium text-transparent md:text-xl animate-shimmer bg-[length:200%_100%]">
+                        <p className="mt-3 bg-gradient-to-r from-orange-500 via-amber-500 to-orange-600 bg-clip-text text-lg font-medium text-transparent md:text-xl animate-shimmer bg-[length:200%_100%]">
                             {t("subtitle")}
                         </p>
                     </div>
 
-                    <p className="max-w-md text-base leading-relaxed text-white/50 animate-slide-up-delay">
+                    <p className="text-slate-500 dark:text-white/50 max-w-md text-base leading-relaxed animate-slide-up-delay">
                         {t("description")}
                     </p>
                 </div>
 
                 {/* ── Right: Login card ────────────────────────── */}
                 <div className="w-full max-w-sm animate-scale-in">
-                    <div className="glass-card rounded-2xl p-8 shadow-2xl shadow-black/40 hover:shadow-orange-500/10 transition-shadow duration-500">
+                    <div className="glass-card rounded-2xl p-8 shadow-2xl shadow-black/10 dark:shadow-black/40 hover:shadow-orange-500/10 transition-shadow duration-500">
                         <LoginForm />
                     </div>
 
                     {/* Subtle bottom decoration */}
                     <div className="mt-6 flex justify-center gap-2">
                         <div className="h-1.5 w-8 rounded-full bg-gradient-to-r from-orange-500 to-amber-500 animate-pulse-soft" />
-                        <div className="h-1.5 w-3 rounded-full bg-white/20" />
-                        <div className="h-1.5 w-3 rounded-full bg-white/10" />
+                        <div className="h-1.5 w-3 rounded-full bg-slate-300 dark:bg-white/20" />
+                        <div className="h-1.5 w-3 rounded-full bg-slate-200 dark:bg-white/10" />
                     </div>
                 </div>
             </div>

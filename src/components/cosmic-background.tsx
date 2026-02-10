@@ -11,18 +11,30 @@ interface Particle {
     speedX: number;
     speedY: number;
     opacity: number;
-    color: string;
+    hue: number;
     pulse: number;
     pulseSpeed: number;
 }
 
-const COLORS = [
+const DARK_COLORS = [
     "255, 150, 50",   // orange
     "168, 85, 247",   // purple
     "6, 182, 212",    // cyan
     "251, 191, 36",   // amber
     "139, 92, 246",   // violet
 ];
+
+const LIGHT_COLORS = [
+    "234, 88, 12",    // orange darker
+    "126, 34, 206",   // purple deeper
+    "8, 145, 178",    // cyan deeper
+    "217, 119, 6",    // amber deeper
+    "109, 40, 217",   // violet deeper
+];
+
+function isDarkMode(): boolean {
+    return document.documentElement.classList.contains("dark");
+}
 
 export function CosmicBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -58,7 +70,7 @@ export function CosmicBackground() {
                     speedX: (Math.random() - 0.5) * 0.3,
                     speedY: (Math.random() - 0.5) * 0.3,
                     opacity: Math.random() * 0.6 + 0.2,
-                    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+                    hue: Math.floor(Math.random() * 5),
                     pulse: Math.random() * Math.PI * 2,
                     pulseSpeed: Math.random() * 0.02 + 0.01,
                 };
@@ -72,9 +84,14 @@ export function CosmicBackground() {
             const mx = mouseRef.current.x;
             const my = mouseRef.current.y;
             const particles = particlesRef.current;
+            const dark = isDarkMode();
+            const colors = dark ? DARK_COLORS : LIGHT_COLORS;
+            const lineColor = dark ? "255, 255, 255" : "0, 0, 0";
+            const lineBaseOpacity = dark ? 0.06 : 0.04;
 
             for (let i = 0; i < particles.length; i++) {
                 const p = particles[i];
+                const color = colors[p.hue];
 
                 // Drift
                 p.baseX += p.speedX;
@@ -108,7 +125,7 @@ export function CosmicBackground() {
                 // Draw particle
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(${p.color}, ${glowOpacity})`;
+                ctx.fillStyle = `rgba(${color}, ${glowOpacity})`;
                 ctx.fill();
 
                 // Glow effect for larger particles
@@ -119,8 +136,8 @@ export function CosmicBackground() {
                         p.x, p.y, 0,
                         p.x, p.y, p.size * 3
                     );
-                    grad.addColorStop(0, `rgba(${p.color}, ${glowOpacity * 0.3})`);
-                    grad.addColorStop(1, `rgba(${p.color}, 0)`);
+                    grad.addColorStop(0, `rgba(${color}, ${glowOpacity * 0.3})`);
+                    grad.addColorStop(1, `rgba(${color}, 0)`);
                     ctx.fillStyle = grad;
                     ctx.fill();
                 }
@@ -136,7 +153,7 @@ export function CosmicBackground() {
                         ctx.beginPath();
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(p2.x, p2.y);
-                        ctx.strokeStyle = `rgba(255, 255, 255, ${0.06 * (1 - d2 / 120)})`;
+                        ctx.strokeStyle = `rgba(${lineColor}, ${lineBaseOpacity * (1 - d2 / 120)})`;
                         ctx.lineWidth = 0.5;
                         ctx.stroke();
                     }

@@ -14,7 +14,7 @@ export function LoginForm() {
             <div className="flex flex-col gap-2">
                 <label
                     htmlFor="studentId"
-                    className="text-xs font-medium tracking-wider text-white/50 uppercase"
+                    className="text-xs font-medium tracking-wider text-slate-500 dark:text-white/50 uppercase"
                 >
                     {t("studentId")}
                 </label>
@@ -22,7 +22,7 @@ export function LoginForm() {
                     id="studentId"
                     type="text"
                     placeholder={t("studentId")}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 backdrop-blur-sm focus:border-orange-500/50 focus:bg-white/[0.08]"
+                    className="w-full rounded-xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/5 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/30 backdrop-blur-sm focus:border-orange-500/50 focus:bg-white dark:focus:bg-white/[0.08]"
                     autoComplete="username"
                 />
             </div>
@@ -31,7 +31,7 @@ export function LoginForm() {
             <div className="flex flex-col gap-2">
                 <label
                     htmlFor="accessCode"
-                    className="text-xs font-medium tracking-wider text-white/50 uppercase"
+                    className="text-xs font-medium tracking-wider text-slate-500 dark:text-white/50 uppercase"
                 >
                     {t("accessCode")}
                 </label>
@@ -39,7 +39,7 @@ export function LoginForm() {
                     id="accessCode"
                     type="text"
                     placeholder={t("accessCode")}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-white/30 backdrop-blur-sm focus:border-orange-500/50 focus:bg-white/[0.08]"
+                    className="w-full rounded-xl border border-slate-200 dark:border-white/10 bg-white/80 dark:bg-white/5 px-4 py-3 text-sm text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-white/30 backdrop-blur-sm focus:border-orange-500/50 focus:bg-white dark:focus:bg-white/[0.08]"
                     autoComplete="off"
                 />
             </div>

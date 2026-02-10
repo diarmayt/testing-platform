@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme inline {
   --color-background: #0b0d17;
   --color-foreground: #ededed;
@@ -23,28 +25,54 @@
   --animate-shimmer: shimmer 3s ease-in-out infinite;
 }
 
-/* ── Cosmic background ─────────────────────────────── */
+/* ── Dark theme (default) ──────────────────────────── */
+.dark body {
+  background: #0b0d17;
+  color: #ededed;
+}
+
+/* ── Light theme ───────────────────────────────────── */
+:root:not(.dark) body {
+  background: linear-gradient(135deg, #f8f9fc 0%, #eef1f8 50%, #f0e8f5 100%);
+  color: #1a1a2e;
+}
+
 body {
-  background: var(--color-background);
-  color: var(--color-foreground);
   min-height: 100vh;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 /* ── Glassmorphism card ────────────────────────────── */
-.glass-card {
-  background: var(--color-glass);
-  border: 1px solid var(--color-glass-border);
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
 }
 
-/* ── Cosmic orbs (decorative blurs) ────────────────── */
+:root:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* ── Cosmic orbs ───────────────────────────────────── */
 .cosmic-orb {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
-  opacity: 0.4;
   pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.dark .cosmic-orb {
+  opacity: 0.4;
+}
+
+:root:not(.dark) .cosmic-orb {
+  opacity: 0.25;
 }
 
 /* ── Focus ring ────────────────────────────────────── */
